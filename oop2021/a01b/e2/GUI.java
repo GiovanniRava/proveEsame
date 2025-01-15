@@ -42,7 +42,6 @@ public class GUI extends JFrame {
                     }
                     break;
                 case WRONG:
-
             } 
         };
                 
