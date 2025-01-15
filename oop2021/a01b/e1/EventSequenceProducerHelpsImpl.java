@@ -42,21 +42,20 @@ public class EventSequenceProducerHelpsImpl implements EventSequenceProducerHelp
     }
 
     @Override
-    public <E> Iterable<E> asEventContentIterable(EventSequenceProducer<E> sequence) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'asEventContentIterable'");
+    public <E> Iterable<E> asEventContentIterable(EventSequenceProducer<E> history) {
+        return ()-> this.producerToStream(history).map(Pair::get2).iterator();
     }
 
     @Override
-    public <E> Optional<Pair<Double, E>> nextAt(EventSequenceProducer<E> sequence, double time) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'nextAt'");
+    public <E> Optional<Pair<Double, E>> nextAt(EventSequenceProducer<E> history, double time) {
+        return this.producerToStream(history)
+        .dropWhile(p->p.get1()<time)
+        .findFirst();
     }
 
     @Override
     public <E> EventSequenceProducer<E> filter(EventSequenceProducer<E> sequence, Predicate<E> predicate) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'filter'");
+        return this.fromIterator(producerToStream(sequence).filter(p->predicate.test(p.get2())));
     }
 
 }

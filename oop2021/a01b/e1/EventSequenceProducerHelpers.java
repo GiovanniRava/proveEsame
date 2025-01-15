@@ -26,14 +26,14 @@ public interface EventSequenceProducerHelpers {
 	 * @return the EventSequenceProducer obtained from sequence by taking all events happening
 	 * from @fromTime to @toTime
 	 */
-	<E> List<E> window(EventSequenceProducer<E> sequence, double fromTime, double toTime);
+	<E> List<E> window(EventSequenceProducer<E> history, double fromTime, double toTime);
 	
 	/**
 	 * @param <E>
 	 * @param sequence
 	 * @return an iterable over the content of all events
 	 */
-	<E> Iterable<E> asEventContentIterable(EventSequenceProducer<E> sequence);
+	<E> Iterable<E> asEventContentIterable(EventSequenceProducer<E> history);
 	
 	/**
 	 * @param <E>
@@ -41,7 +41,7 @@ public interface EventSequenceProducerHelpers {
 	 * @param time
 	 * @return the first event produced by @sequence after @time, or the empty Optional if there is not one 
 	 */
-	<E> Optional<Pair<Double,E>> nextAt(EventSequenceProducer<E> sequence, double time);
+	<E> Optional<Pair<Double,E>> nextAt(EventSequenceProducer<E> history, double time);
 	
 	/**
 	 * @param <E>
