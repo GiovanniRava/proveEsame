@@ -55,7 +55,7 @@ public class EventSequenceProducerHelpsImpl implements EventSequenceProducerHelp
 
     @Override
     public <E> EventSequenceProducer<E> filter(EventSequenceProducer<E> sequence, Predicate<E> predicate) {
-        return this.fromIterator(producerToStream(sequence).filter(p->predicate.test(p.get2())));
+        return this.fromIterator(producerToStream(sequence).filter(p->predicate.test(p.get2())).iterator());
     }
 
 }
