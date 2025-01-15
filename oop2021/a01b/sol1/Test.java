@@ -1,7 +1,5 @@
 package a01b.sol1;
 
-import static org.junit.Assert.*;
-
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -48,7 +46,7 @@ public class Test {
 			new Pair<>(4.4, "quattro")
 	);
 
-	@org.junit.Before
+	@Before
 	public void initFactory() {
 		this.helpers = new EventSequenceProducerHelpersImpl();
 	}

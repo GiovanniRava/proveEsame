@@ -1,6 +1,9 @@
 package a01a.e1;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +48,7 @@ public class Test {
 	private AcceptorFactory factory = null;
 	
 	
-	@org.junit.Before
+	@BeforeEach
 	public void initFactory() {
 //		this.factory = new AcceptorFactoryAdvancedImpl();
 	}
