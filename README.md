@@ -1,0 +1,1 @@
+This repo contains all the mock exams that I'm doing for OOP.
