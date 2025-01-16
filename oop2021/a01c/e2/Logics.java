@@ -1,10 +1,8 @@
 package a01c.e2;
 
 public interface Logics {
-    
-    public boolean next();
 
-    Pair<Integer, Integer> getNext();
+    boolean hit(int x, int y);
 
-    boolean isObstacle(int x, int y);
+    boolean isSelected(int x, int y);
 }
