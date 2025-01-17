@@ -14,7 +14,7 @@ public class LogicsImpl implements Logics{
             this.y = y ;
         }
         Direction next(){
-            return Direction.values()[this.ordinal()+1%Direction.values().lenght];
+            return Direction.values()[(this.ordinal()+1) % Direction.values().length];
         }
     }
     private final int size;
