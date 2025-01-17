@@ -1,6 +1,5 @@
 package a01a.sol2;
 
-import java.util.Set;
 
 public interface Logics{
 	
