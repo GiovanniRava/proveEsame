@@ -1,44 +1,71 @@
 package a02a.e1;
+import static a02a.e1.Diet.Nutrient.*;
 
-import java.util.Map;
+import java.util.Set;
+import java.util.function.Predicate;
 
 public class DietFactoryImpl implements DietFactory{
 
     @Override
     public Diet standard() {
-        return new Diet() {
+        return new AbstractDiet() {
 
-            @Override
-            public void addFood(String name, Map<Nutrient, Integer> nutritionMap) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'addFood'");
-            }
-
-            @Override
-            public boolean isValid(Map<String, Double> dietMap) {
-                // TODO Auto-generated method stub
-                throw new UnsupportedOperationException("Unimplemented method 'isValid'");
-            }
-            
-        };
+			@Override
+			protected Set<Pair<Predicate<Nutrient>, Predicate<Double>>> getConstraints() {
+				return Set.<Pair<Predicate<Nutrient>, Predicate<Double>>>of(
+						new Pair<>(n -> true, d -> d>=1500 && d<=2000)
+				);
+			}
+		};
     }
 
     @Override
     public Diet lowCarb() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'lowCarb'");
+        return new AbstractDiet() {
+
+			@Override
+			protected Set<Pair<Predicate<Nutrient>, Predicate<Double>>> getConstraints() {
+				return Set.<Pair<Predicate<Nutrient>, Predicate<Double>>>of(
+						new Pair<>(n -> true, d -> d>=1000 && d<=1500),
+						new Pair<>(n -> n == CARBS , d -> d<=300)
+				);
+			}
+		};
     }
 
     @Override
     public Diet highProtein() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'highProtein'");
+        return new AbstractDiet() {
+
+			@Override
+			protected Set<Pair<Predicate<Nutrient>, Predicate<Double>>> getConstraints() {
+				return Set.<Pair<Predicate<Nutrient>, Predicate<Double>>>of(
+						new Pair<>(n -> true, d -> d>=2000 && d<=2500),
+						new Pair<>(n -> n == CARBS , d -> d<=300),
+						new Pair<>(n -> n == PROTEINS , d -> d>=1300)
+				);
+			}
+		};
     }
 
     @Override
     public Diet balanced() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'balanced'");
+        return new AbstractDiet(){
+
+            @Override
+            protected Set<Pair<Predicate<Nutrient>, Predicate<Double>>> getConstraints() {
+                return Set.<Pair<Predicate<Nutrient>, Predicate<Double>>>of(
+						new Pair<>(n -> true, d -> d>=1600 && d<=2000),
+						new Pair<>(n -> n == CARBS , d -> d>=600),
+						new Pair<>(n -> n == PROTEINS , d -> d>=600),
+						new Pair<>(n -> n == FAT , d -> d>=400),
+						new Pair<>(n -> n == FAT || n == PROTEINS, d -> d<=1100)
+				);
+            }
+
+        };
     }
+
+    
 
 }
