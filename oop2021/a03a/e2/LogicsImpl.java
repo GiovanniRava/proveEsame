@@ -26,10 +26,10 @@ public class LogicsImpl implements Logics{
     private void updateSelected(Pair<Integer, Integer> p1){
         var p2 = new Pair<>(this.size-p1.getX()-1, this.size-p1.getY()-1);
         	for (var x: range(p1.getX(),p2.getX())){
-			for (var y: range(p1.getY(),p2.getY())){
-				if (x == p1.getX() || x == p2.getX() || y == p1.getY() || y == p2.getY()) {
-					this.selected.add(new Pair<>(x,y));
-				}
+			    for (var y: range(p1.getY(),p2.getY())){
+                    if (x == p1.getX() || x == p2.getX() || y == p1.getY() || y == p2.getY()) {
+                        this.selected.add(new Pair<>(x,y));
+                    }
 			}
 		}
 	}
