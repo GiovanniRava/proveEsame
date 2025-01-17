@@ -2,15 +2,13 @@ package a02c.e2;
 
 import javax.swing.*;
 import java.util.*;
-import java.util.List;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class GUI extends JFrame {
     
     private static final long serialVersionUID = -6218820567019985015L;
-    private final Map<Pair<Integer, Integer>, JButton> cells = new ArrayList<>();
-    private int counter = 0;
+    private final Map<Pair<Integer, Integer>, JButton> cells = new HashMap<>();
     private final Logics logics;
     
     public GUI(int size) {
@@ -32,7 +30,7 @@ public class GUI extends JFrame {
             for (int j=0; j<size; j++){
             	var pos = new Pair<>(j,i);
                 final JButton jb = new JButton(" ");
-                this.cells.add(jb);
+                this.cells.put(pos,jb);
                 jb.addActionListener(al);
                 panel.add(jb);
             }
