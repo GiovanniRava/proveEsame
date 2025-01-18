@@ -36,7 +36,7 @@ public class LogicsImpl implements Logics{
     }
     
     private Pair<Integer, Integer> nextPosition (Pair<Integer, Integer> p){
-        return  new Pair<>(p.getX()+this.direction.get(p).x, p.getY()+this.direction.get(p).y);
+        return  new Pair<>(p.getX()+this.directions.get(p).x, p.getY()+this.directions.get(p).y);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class LogicsImpl implements Logics{
         for (var p : this.position) {
             var next = nextPosition(p);
             if(next.getY()==size || this.obstacles.contains(next)){
-                this.direction.put(p, this.direction.get(p).next().next());
+                this.direction.put(p, this.directions.get(p).next().next());
                 this.obstacles.remove(next);
                 next = nextPosition(p);
             }
