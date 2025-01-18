@@ -44,7 +44,7 @@ public class LogicsImpl implements Logics{
         for (var p : this.position) {
             var next = nextPosition(p);
             if(next.getY()==size || this.obstacles.contains(next)){
-                this.direction.put(p, this.directions.get(p).next().next());
+                this.directions.put(p, this.directions.get(p).next().next());
                 this.obstacles.remove(next);
                 next = nextPosition(p);
             }
