@@ -25,40 +25,7 @@ public class TimeSheetFactoryImpl implements TimeSheetFactory{
             throw new UnsupportedOperationException("Unimplemented method 'sumsPerDay'");
         }
     }
-
-
     
-        @Override
-        public List<String> activities() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'activities'");
-        }
-
-        @Override
-        public List<String> days() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'days'");
-        }
-
-        @Override
-        public int getSingleData(String activity, String day) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'getSingleData'");
-        }
-
-        @Override
-        public Map<String, Integer> sumsPerActivity() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'sumsPerActivity'");
-        }
-
-        @Override
-        public Map<String, Integer> sumsPerDay() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'sumsPerDay'");
-        }
-
-    }
     @Override
     public TimeSheet flat(int numActivities, int numNames, int hours) {
         // TODO Auto-generated method stub
