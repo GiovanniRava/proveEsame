@@ -45,27 +45,29 @@ public class TimetableFactoryImpl  implements TimetableFactory{
     }
     @Override
     public Timetable empty() {
-         
-            
-        
+        return new TimetableData(Set.of(), Set.of(), (a,b)-> 0);
     }
 
     @Override
     public Timetable single(String activity, String day) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'single'");
+        return empty().addHour(activity, day);
     }
 
     @Override
     public Timetable join(Timetable table1, Timetable table2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'join'");
+        return new TimetableData(
+            concatSet(table1.activities(), table2.activities()),
+            concatSet(table1.days(), table2.days()), 
+            (a,d)-> table1.getSingleData(a, d) + table2.getSingleData(a, d));
+        
     }
 
     @Override
     public Timetable cut(Timetable table, BiFunction<String, String, Integer> bounds) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'cut'");
+        return new TimetableData(
+            table.activities(), 
+            table.days(), 
+            (a,d)-> Math.min(table.getSingleData(a, d), bounds.apply(a, d)));
     }
 
 }
