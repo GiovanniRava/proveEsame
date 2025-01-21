@@ -4,7 +4,7 @@ import java.util.*;
 
 public interface Logic {
 
-    boolean hit(Position position);
+    void hit(Position position);
 
     Optional<Integer> found (Position p);
 
