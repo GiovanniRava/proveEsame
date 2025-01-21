@@ -17,7 +17,7 @@ public class LogicImpl implements Logic{
             this.position = Optional.of(position);
             return true;
         }
-        var newPosition = getDirection(position).flatMap(p-> this.position.map(q->new Position(p.x()+q.x(9), p.y()+q.y())));
+        var newPosition = getDirection(position).flatMap(p-> this.position.map(q->new Position(p.x()+q.x(), p.y()+q.y())));
         if(newPosition.isPresent()){
             this.position = newPosition;
             return true;
@@ -50,7 +50,7 @@ public class LogicImpl implements Logic{
 
     @Override
     public boolean isOver() {
-        return this.position.isPresent() && (!this.inRange(this.position.get().x)) || (!this.inRange(this.position.get().y()));
+        return this.position.isPresent() && (!this.inRange(this.position.get().x())) || (!this.inRange(this.position.get().y()));
     }
     private boolean inRange(int x){
         return x>=2 && x<this.size-2;
