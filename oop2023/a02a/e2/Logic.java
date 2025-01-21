@@ -5,6 +5,8 @@ public interface Logic {
         STATIC, DYNAMIC, EMPTY;
     }
     boolean hit(Position position);
+
     CellType getMark(Position position);
+    
     boolean isOver();
 }
