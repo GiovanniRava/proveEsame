@@ -9,9 +9,10 @@ import java.awt.event.ActionListener;
 public class GUI extends JFrame {
     
     private static final long serialVersionUID = -6218820567019985015L;
-    private final List<JButton> cells = new ArrayList<>();
-    
+    private final Map<JButton, Position> cells = new HashMap<>();
+    private final Logic logic;
     public GUI(int width) {
+        this.logic = new LogicImpl(width);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(70*width, 70*width);
         
@@ -20,7 +21,7 @@ public class GUI extends JFrame {
         
         ActionListener al = e -> {
             var jb = (JButton)e.getSource();
-        	jb.setText(String.valueOf(cells.indexOf(jb)));
+        	this.logic.hit(this.cells.get(jb));
         };
                 
         for (int i=0; i<width; i++){
