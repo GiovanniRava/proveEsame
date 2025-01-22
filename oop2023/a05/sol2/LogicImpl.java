@@ -55,7 +55,6 @@ public class LogicImpl implements Logic {
             }
         }
     }
-
     @Override
     public Position getEnemy() {
         return this.enemy;
