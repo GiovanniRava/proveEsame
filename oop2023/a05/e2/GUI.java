@@ -21,19 +21,37 @@ public class GUI extends JFrame {
         
         ActionListener al = e -> {
             var jb = (JButton)e.getSource();
-        	this.logic.hit(this.cells.get(jb));
+        	if(this.logic.hit(this.cells.get(jb))){
+                redraw();
+                if(this.logic.isOver()){
+                    this.cells.forEach((k, d)->k.setEnabled(false));
+                }else {
+                    this.logic.moveEnemy();
+                    redraw();
+                }
+            };
         };
                 
         for (int i=0; i<width; i++){
             for (int j=0; j<width; j++){
-            	var pos = new Pair<>(j,i);
+            	var pos = new Position(j,i);
                 final JButton jb = new JButton(pos.toString());
-                this.cells.add(jb);
+                this.cells.put(jb, pos);
                 jb.addActionListener(al);
                 panel.add(jb);
             }
         }
+        redraw();
         this.setVisible(true);
+    }
+    private void redraw(){
+        for (var entry  : this.cells.entrySet()) {
+            entry.getKey().setText(
+                this.logic.getPlayer().equals(entry.getValue())? "P" : 
+                this.logic.getEnemy().equals(entry.getValue())? "E" : " "
+            );
+            
+        }
     }
     
 }
