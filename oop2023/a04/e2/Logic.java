@@ -5,5 +5,5 @@ public interface Logic {
     boolean hit(Position position);
 
    
-    boolean isOver();
+    boolean isOver(Position first, Position last);
 }
