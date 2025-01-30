@@ -7,7 +7,7 @@ import java.util.function.Function;
  * An interface modelling a factory of SubsequenceCombiner.
  * The general idea is that in all cases the input list will be 
  * iterated until a certain condition is satisfied: the identified 
- * subsequence will then be trasformed into an elemento of the output.
+ * subsequence will then be trasformed into an element of the output.
  * When the input is over, the current subsequence (if not empty) will
  * be used to generate a new output element.
  * 
