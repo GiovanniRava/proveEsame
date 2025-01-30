@@ -37,5 +37,5 @@ val test by tasks.getting(Test::class) {
     testLogging.showStandardStreams = true    
 }
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0' // Use the latest version
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")// Use the latest version
 }
