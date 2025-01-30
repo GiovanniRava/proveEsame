@@ -14,15 +14,15 @@ public class SubsequenceCombinerFactoryImpl implements SubsequenceCombinerFactor
             public List<Integer> combine(List<Integer> list) {
                 int sum = 0;
                 List<Integer> returnList = new LinkedList<>();
-                for (int i = 1; i<list.size(); i++){
-                    if(i%3 == 0){
+                for (int i = 0; i<list.size(); i++){
+                    if(i % 3 == 1){
                         returnList.add(sum);
+                        sum = 0;
                     }
                     sum += list.get(i);
                 }
                 return returnList;
             }
-            
         };
 
     }
