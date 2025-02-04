@@ -57,19 +57,56 @@ public class ParserFactoryImpl implements ParserFactory{
 
     @Override
     public <X> Parser<X> fromIteration(X x0, Function<X, Optional<X>> next) {
-        
+        return new Parser<X>() {
+
+            @Override
+            public boolean accept(Iterator<X> iterator) {
+                List<X> list = new ArrayList<>();
+                while(iterator.hasNext()){
+                    list.add(iterator.next());
+                }
+
+                if(list.isEmpty()){
+                    return false;
+                }
+
+                if(!list.getFirst().equals(x0)){
+                    return false;
+                }
+                for (int i = 1; i < list.size() - 1 ; i++){
+                    if(!next.apply(list.get(i-1)).equals(Optional.of(list.get(i)))){
+                        return false;
+                    }
+                }
+                return next.apply(list.get(list.size()-1)).isEmpty();
+
+            }
+            
+        };
     }
 
     @Override
     public <X> Parser<X> recursive(Function<X, Optional<Parser<X>>> nextParser, boolean isFinal) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'recursive'");
+        return new Parser<X>() {
+
+            @Override
+            public boolean accept(Iterator<X> iterator) {
+                if(!iterator.hasNext()){
+                    return isFinal;
+                }
+
+                return nextParser.apply(iterator.next()).map(i->i.accept(iterator)).orElse(false);
+            }
+            
+        };
     }
 
     @Override
     public <X> Parser<X> fromParserWithInitial(X x, Parser<X> parser) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'fromParserWithInitial'");
+        return recursive(p->p.equals(x)
+                ?Optional.of(parser)
+                : Optional.empty(), 
+                false);
     }
 
 }

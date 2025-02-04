@@ -26,7 +26,7 @@ public interface ParserFactory {
      * @param transitions
      * @param acceptanceInputs
      * @return a parser that starts accepting x0, then recursively proceeds accepting
-     * x1 if pair (x0,x1) is in transitions set, and so on. A sequence is correctly
+     * x1 if pair (x0,x1) is in transi9tions set, and so on. A sequence is correctly
      * parsed if recursion/iteration correctly reaches a final xn that is contained in
      * acceptanceInputs
      */
