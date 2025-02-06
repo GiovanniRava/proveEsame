@@ -30,12 +30,12 @@ public class GUI extends JFrame {
         	    var position = cells.get(button);
                 if(inLine(position)){
                     if(checkHumanWin(position)){
-                    System.out.println("Vittoria!!");
-                    resetGame();
-                }else{
-                    updateUmanPosition(position);
-                    updateComputerPosition();
-                }
+                        System.out.println("Vittoria!!");
+                        resetGame();
+                    }else{
+                        updateUmanPosition(position);
+                        updateComputerPosition();
+                    }
                 }
                 
             }
