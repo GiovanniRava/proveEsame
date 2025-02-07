@@ -1,40 +1,45 @@
 package a01a.e1;
 
+import static java.util.stream.Collectors.collectingAndThen;
+import static java.util.stream.Collectors.toSet;
+
+import java.util.*;
 import java.util.List;
 import java.util.Set;
 
 public class ComposableParserFactoryImpl implements ComposableParserFactory {
-    private static class ComposableParserImpl implements ComposableParser{
+    private static class ComposableParserImpl<T> implements ComposableParser<T>{
+        private Set<Iterator<T>> iterators;
+        
+        public ComposableParserImpl(Set<Iterator<T>> iterators) {
+            this.iterators = Set.copyOf(iterators);
+        }
 
         @Override
         public boolean parse(Object t) {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'parse'");
+            iterators = iterators.stream().filter(Iterator::hasNext).filter(it-> it.next().equals(t)).collect(toSet());
+            return !iterators.isEmpty();
         }
 
         @Override
         public boolean end() {
-            // TODO Auto-generated method stub
-            throw new UnsupportedOperationException("Unimplemented method 'end'");
+            return this.iterators.stream().anyMatch(it->!it.hasNext());
         }
         
     }
     @Override
     public <X> ComposableParser<X> empty() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'empty'");
+        return fromList(Collections.emptyList());
     }
 
     @Override
     public <X> ComposableParser<X> one(X x) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'one'");
+        return fromList(List.of(x));
     }
 
     @Override
     public <X> ComposableParser<X> fromList(List<X> list) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'fromList'");
+        return fromAnyList(Set.of(list));
     }
 
     @Override
